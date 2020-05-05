@@ -11,6 +11,9 @@
 .                ;
 %%
 /*Observar que se agrega . a la seccion de tokens, y no se hace nada*/
+
+/*yyin : el puntero de flujo de entrada (es decir, apunta a un archivo de entrada que se va a escanear o tokenizar), 
+sin embargo, la entrada predeterminada de main () es stdin.*/
 int main(int, char**) {
   
   /*Abrimos el archivo de entrada*/
