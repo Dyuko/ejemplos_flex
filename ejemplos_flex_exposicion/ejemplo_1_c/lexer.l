@@ -2,6 +2,7 @@
 %{ 
 int count = 0; 
 %} 
+/*yywrap() se llama por lex cuando se agota la entrada(o en EOF) yywrap predeterminado siempre devuelve 1*/
 /*No definimos nuestra propia funcion yywrap()*/
 %option noyywrap
 /*La sección de reglas tiene tres reglas, la primera regla coincide con letras mayúsculas*/
@@ -9,8 +10,8 @@ int count = 0;
 /*La tercera regla no toma datos después de ingresar*/
 
 /*Dos variables importantes*/
-/*yytext que almacena la cadena que ha coincidido con un patrón.*/
-/*La otra es la variable yyleng que indica la longitud de la cadena a la que apunta yytext.*/
+/*yytext: un bufer que contiene los caracteres de entrada que realmente coinciden con el patron, es decir lexema. */
+/*yyleng: que indica la longitud de la cadena a la que apunta yytext.*/
 %% 
 [A-Z] 		{
 				printf("Letra Capital: %s\n", yytext); 
@@ -28,7 +29,11 @@ int count = 0;
 
 int main()
 { 
-	yylex();	//Funcion principal de flex que ejecuta la seccion de reglas
+	/*yylex() implica el punto de entrada principal para lex, 
+	lee el flujo de entradas, genera tokens, devuelve cero al final del flujo de entradas
+	Se llama para invocar al lexer, y cada vez que se llama yylex(), el escaner continua procesando
+	desde donde se quedo por ultima vez*/
+	yylex();	
 	printf("Numero de letras capitales: %d\n", count); 
 	return 0; 
 } 

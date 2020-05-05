@@ -445,13 +445,15 @@ char *yytext;
 int count = 0; 
 #line 446 "lex.yy.c"
 /*No definimos nuestra propia funcion yywrap()*/
+/*yywrap() se llama por lex cuando se agota la entrada(o en EOF) 
+yywrap predeterminado siempre devuelve 1*/
 /*La sección de reglas tiene tres reglas, la primera regla coincide con letras mayúsculas*/
 /*La segunda regla coincide con cualquier carácter excepto la nueva línea*/
 /*La tercera regla no toma datos después de ingresar*/
 /*Dos variables importantes*/
-/*yytext que almacena la cadena que ha coincidido con un patrón.*/
-/*La otra es la variable yyleng que indica la longitud de la cadena a la que apunta yytext.*/
-#line 454 "lex.yy.c"
+/*yytext: un bufer que contiene los caracteres de entrada que realmente coinciden con el patron, es decir lexema. */
+/*yyleng: que indica la longitud de la cadena a la que apunta yytext.*/
+#line 456 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -668,9 +670,9 @@ YY_DECL
 		}
 
 	{
-#line 14 "lexer.l"
+#line 16 "lexer.l"
 
-#line 673 "lex.yy.c"
+#line 675 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -729,7 +731,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "lexer.l"
+#line 17 "lexer.l"
 {
 				printf("Letra Capital: %s\n", yytext); 
 				count++;
@@ -737,7 +739,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 19 "lexer.l"
+#line 21 "lexer.l"
 {	
 				printf("Letra no Capital: %s\n", yytext);
 			} 
@@ -745,17 +747,17 @@ YY_RULE_SETUP
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 22 "lexer.l"
+#line 24 "lexer.l"
 {
 				return 0;
 			} 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "lexer.l"
+#line 27 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 758 "lex.yy.c"
+#line 760 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1760,14 +1762,18 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 25 "lexer.l"
+#line 27 "lexer.l"
 
 
 /*La seccion de codigo imprime el numero de letras mayusculas presentes en la entrada dada*/
 
 int main()
 { 
-	yylex();	//Funcion principal de flex que ejecuta la seccion de reglas
+	/*yylex() implica el punto de entrada principal para lex, 
+	lee el flujo de entradas, genera tokens, devuelve cero al final del flujo de entradas
+	Se llama para invocar al lexer, y cada vez que se llama yylex(), el escaner continua procesando
+	desde donde se quedo por ultima vez*/
+	yylex();	
 	printf("Numero de letras capitales: %d\n", count); 
 	return 0; 
 } 
