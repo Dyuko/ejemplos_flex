@@ -16,11 +16,11 @@ int count = 0;
 /*yyleng: que indica la longitud de la cadena a la que apunta yytext.*/
 %% 
 [A-Z] 		{
-				printf("Letra Capital: %s\n", yytext); 
+				printf("Letra Mayuscula: %s-%d\n", yytext,yyleng); 
 				count++;
 			} 
 .	 		{	
-				printf("Letra no Capital: %s\n", yytext);
+				printf("Letra no Mayuscula: %s\n", yytext);
 			} 
 \n 			{
 				return 0;

@@ -365,7 +365,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[8] =
     {   0,
-        0,    0,    5,    2,    3,    1,    0
+        0,    0,    5,    1,    3,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -444,16 +444,17 @@ char *yytext;
 #line 3 "lexer.l"
 int count = 0; 
 #line 446 "lex.yy.c"
+/*Cuando se alcanza el final del archivo, se verifica el valor de retorno de yywrap ().*/
+/*Si no es cero, la exploración finaliza y si es 0 la exploración continúa con el siguiente archivo de entrada.*/
 /*No definimos nuestra propia funcion yywrap()*/
-/*yywrap() se llama por lex cuando se agota la entrada(o en EOF) 
-yywrap predeterminado siempre devuelve 1*/
+/*%option noyywrap define yywrap como una macro local que devuelve 1*/
 /*La sección de reglas tiene tres reglas, la primera regla coincide con letras mayúsculas*/
 /*La segunda regla coincide con cualquier carácter excepto la nueva línea*/
 /*La tercera regla no toma datos después de ingresar*/
 /*Dos variables importantes*/
 /*yytext: un bufer que contiene los caracteres de entrada que realmente coinciden con el patron, es decir lexema. */
 /*yyleng: que indica la longitud de la cadena a la que apunta yytext.*/
-#line 456 "lex.yy.c"
+#line 457 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -670,9 +671,9 @@ YY_DECL
 		}
 
 	{
-#line 16 "lexer.l"
+#line 17 "lexer.l"
 
-#line 675 "lex.yy.c"
+#line 676 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -731,33 +732,33 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "lexer.l"
-{
-				printf("Letra Capital: %s\n", yytext); 
-				count++;
+#line 18 "lexer.l"
+{	
+				printf("Letra no Mayuscula: %s\n", yytext);
 			} 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 21 "lexer.l"
-{	
-				printf("Letra no Capital: %s\n", yytext);
+{
+				printf("Letra Mayuscula: %s-%d\n", yytext,yyleng); 
+				count++;
 			} 
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 24 "lexer.l"
+#line 25 "lexer.l"
 {
 				return 0;
 			} 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "lexer.l"
+#line 28 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 760 "lex.yy.c"
+#line 761 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1762,7 +1763,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 27 "lexer.l"
+#line 28 "lexer.l"
 
 
 /*La seccion de codigo imprime el numero de letras mayusculas presentes en la entrada dada*/

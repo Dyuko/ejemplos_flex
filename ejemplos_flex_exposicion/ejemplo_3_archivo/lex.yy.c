@@ -1762,6 +1762,9 @@ void yyfree (void * ptr )
 #line 12 "lexer.l"
 
 /*Observar que se agrega . a la seccion de tokens, y no se hace nada*/
+
+/*yyin : el puntero de flujo de entrada (es decir, apunta a un archivo de entrada que se va a escanear o tokenizar), 
+sin embargo, la entrada predeterminada de main () es stdin.*/
 int main(int, char**) {
   
   /*Abrimos el archivo de entrada*/
@@ -1775,5 +1778,5 @@ int main(int, char**) {
   yyin = myfile;    /*yylex lee del archivo almacenado en la variable yyin*/
   
   //Durante la entrada 
-  while(yylex());   /*Cada vez que su programa llama a yylex, devuelve el siguiente token */
+  yylex();   /*Cada vez que su programa llama a yylex, devuelve el siguiente token */
 }

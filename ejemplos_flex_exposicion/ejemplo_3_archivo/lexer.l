@@ -27,5 +27,5 @@ int main(int, char**) {
   yyin = myfile;    /*yylex lee del archivo almacenado en la variable yyin*/
   
   //Durante la entrada 
-  while(yylex());   /*Cada vez que su programa llama a yylex, devuelve el siguiente token */
+  yylex();   /*Cada vez que su programa llama a yylex, devuelve el siguiente token */
 }

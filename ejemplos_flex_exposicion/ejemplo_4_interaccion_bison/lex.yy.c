@@ -447,7 +447,8 @@ char *yytext;
     #include "parser.tab.h"  /*Para obtener los tipos de tokens de bison*/
     extern "C" int yylex();
 #line 449 "lex.yy.c"
-#line 450 "lex.yy.c"
+/*yylval : contiene el valor del token.*/
+#line 451 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -664,9 +665,9 @@ YY_DECL
 		}
 
 	{
-#line 7 "lexer.l"
+#line 8 "lexer.l"
 
-#line 669 "lex.yy.c"
+#line 670 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -726,22 +727,22 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 8 "lexer.l"
+#line 9 "lexer.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "lexer.l"
+#line 10 "lexer.l"
 {yylval.fval = atof(yytext); return FLOAT;   }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "lexer.l"
+#line 11 "lexer.l"
 {yylval.ival = atoi(yytext); return INT;     }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "lexer.l"
+#line 12 "lexer.l"
 {
                         // Tenemos que eliminar yytext porque Flex lo cambiará para el próximo token. 
                         // Tenga en cuenta que esta memoria debe liberarse en algún lugar, por eso llamamos 
@@ -754,10 +755,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "lexer.l"
+#line 21 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 760 "lex.yy.c"
+#line 761 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1762,5 +1763,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 20 "lexer.l"
+#line 21 "lexer.l"
 
