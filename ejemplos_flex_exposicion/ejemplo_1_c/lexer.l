@@ -2,8 +2,10 @@
 %{ 
 int count = 0; 
 %} 
-/*yywrap() se llama por lex cuando se agota la entrada(o en EOF) yywrap predeterminado siempre devuelve 1*/
+/*Cuando se alcanza el final del archivo, se verifica el valor de retorno de yywrap ().*/
+/*Si no es cero, la exploración finaliza y si es 0 la exploración continúa con el siguiente archivo de entrada.*/
 /*No definimos nuestra propia funcion yywrap()*/
+/*%option noyywrap define yywrap como una macro local que devuelve 1*/
 %option noyywrap
 /*La sección de reglas tiene tres reglas, la primera regla coincide con letras mayúsculas*/
 /*La segunda regla coincide con cualquier carácter excepto la nueva línea*/
