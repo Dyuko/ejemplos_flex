@@ -4,6 +4,7 @@ snazzle.l
     #include "parser.tab.h"  /*Para obtener los tipos de tokens de bison*/
     extern "C" int yylex();
 %}
+/*yylval : contiene el valor del token.*/
 %%
 [ \t\n]             ;
 [0-9]+\.[0-9]+      {yylval.fval = atof(yytext); return FLOAT;   }
